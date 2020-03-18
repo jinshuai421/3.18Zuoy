@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        tr {
+            text-align: center;
+        }
+        
+        th {
+            text-align: center;
+            width: 20%;
+        }
+        
+        .table>tbody>tr>td,
+        .table>tbody>tr>th,
+        .table>tfoot>tr>td,
+        .table>tfoot>tr>th,
+        .table>thead>tr>td,
+        .table>thead>tr>th {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contaniner">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                列表
+            </div>
+        </div>
+        <a href="/products/new" class="btn btn-primary">添加</a>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>简介</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%product.forEach(item=>{%>
+                    <tr>
+                        <td>
+                            <%= item.id %>
+                        </td>
+                        <td>
+                            <%= item.pname %>
+                        </td>
+                        <td>
+                            <%= item.pprice %>
+                        </td>
+                        <td>
+                            <%= item.pdesc %>
+                        </td>
+                        <td>
+                            <%- item.del %>
+                                <%- item.update %>
+                        </td>
+                    </tr>
+                    <%})%>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
