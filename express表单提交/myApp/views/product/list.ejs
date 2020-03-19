@@ -46,10 +46,10 @@
                 </tr>
             </thead>
             <tbody>
-                <%product.forEach(item=>{%>
+                <%product.forEach((item,index)=>{%>
                     <tr>
                         <td>
-                            <%= item.id %>
+                            <%= (index + 1) %>
                         </td>
                         <td>
                             <%= item.pname %>
@@ -61,8 +61,8 @@
                             <%= item.pdesc %>
                         </td>
                         <td>
-                            <%- item.del %>
-                                <%- item.update %>
+                            <button type="button" class="btn btn-default btn-del" data-id="<%= item.id %>">删除</button>
+                            <a href="/products/update?id=<%= item.id %>" class="btn btn-primary btn-update">修改</a>
                         </td>
                     </tr>
                     <%})%>
@@ -70,6 +70,24 @@
         </table>
 
     </div>
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('.btn-del').click(function() {
+                $.ajax({
+                    type: 'delete',
+                    url: '/products/del/' + $(this).attr('data-id'),
+                    success: function(res) {
+                        if (res.code == 1) {
+                            location.href = '/products';
+                        } else {
+                            alert('删除失败');
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>
